@@ -1,0 +1,65 @@
+CONVERSOR DE BORDADO - Imagem para .PES (Brother)
+=================================================
+
+COMO USAR
+1. Instale o Python 3.10 ou superior (python.org), marcando "Add Python to PATH".
+2. Dê dois cliques em iniciar.bat. Na primeira vez ele instala o Pillow e o NumPy, o que precisa de internet.
+3. Clique em "Abrir imagem...". As cores são separadas automaticamente e aparecem na
+   aba "Cores do bordado".
+4. Escolha as cores (veja abaixo) e clique em "2. Gerar bordado".
+5. Confira a prévia e a aba "Análise do arquivo" e clique em "3. Salvar .pes...".
+
+ESCOLHA DE CORES
+Na aba "Cores do bordado", cada cor encontrada na imagem aparece com a linha que será usada
+(quadrinho da esquerda = cor da imagem, quadrinho da direita = linha):
+- Trocar linha... (ou duplo clique): abre a cartela de linhas Brother. Também existe
+  "Cor personalizada...", que escolhe qualquer cor; a máquina mostra a linha Brother mais parecida.
+- Bordar / Não bordar (ou tecla espaço): exclui a cor do bordado. Ela fica com a cor do tecido.
+- Mesma linha da 1ª selecionada: selecione várias cores com Ctrl+clique e todas
+  passam a usar a mesma linha. Cores com a mesma linha são bordadas juntas, em um só bloco,
+  o que reduz as trocas de linha.
+- Subir / Descer: muda a ordem de bordado. Normalmente se bordam primeiro as áreas
+  grandes e de fundo e por último os detalhes.
+- Restaurar cores: volta às linhas sugeridas automaticamente.
+- "Usar só as minhas linhas...", no painel da esquerda: marque na cartela as linhas que
+  você tem. A imagem é refeita usando somente essas cores.
+A prévia mostra na hora como o desenho fica com as linhas escolhidas.
+Ao mudar o tamanho, o nº de cores, o fundo, a rotação ou as suas linhas, as cores são separadas
+de novo e as escolhas voltam ao padrão.
+5. "Analisar arquivo .pes..." abre qualquer .pes, inclusive os do PE-Design, e mostra
+   o tamanho, os pontos, as cores e a prévia.
+
+PARÂMETROS
+- Largura/Altura máx.: o desenho é ampliado ou reduzido para caber nessa área,
+  sem distorcer. O padrão é 128 x 124 mm, igual ao Cubra.pes (bastidor de 13 x 13 cm).
+- Nº de cores: total de cores separadas da imagem, incluindo o fundo.
+- Espaçamento das linhas: densidade do preenchimento. Com 0,4 mm fica normal; 0,5 a 0,6 mm
+  deixa o bordado mais leve, para tecidos finos.
+- Comprimento do ponto: 3 a 4 mm é o habitual para enchimento.
+- Ignorar cores menores que (%): junta manchas pequenas, como serrilhado e sombras,
+  à cor mais parecida.
+- Não bordar a cor de fundo: pula a cor que domina a borda da imagem.
+- Girar 90°: gira o desenho, como o Cubra.pes, que estava salvo deitado.
+
+COMO O PROGRAMA TRABALHA
+- A imagem é reduzida a poucas cores e cada área é preenchida com ponto de enchimento
+  (tatami) em linhas horizontais, com os pontos desencontrados "em tijolo".
+- Entre áreas separadas, o programa faz arremate, corte de linha e salto.
+- As cores são ligadas à linha Brother (paleta PEC) mais próxima. Na máquina, use a
+  linha que você tiver no tom mais parecido.
+- O arquivo é gravado como PES versão 1 com a seção PEC, que é a parte que as
+  máquinas Brother, Babylock e outras realmente leem.
+
+LIMITAÇÕES
+- O programa não substitui um software de digitalização profissional, como o PE-Design
+  ou o Wilcom. Não faz ponto cheio (satin) nos contornos, nem base (underlay) ou
+  direção de ponto por área.
+- Funciona melhor com desenhos de cores chapadas e contornos nítidos. Fotos e
+  degradês ficam com aparência "posterizada".
+- Detalhes com menos de 1 mm, como letras muito pequenas e traços finos, podem
+  falhar ou ficar irregulares.
+- Faça sempre um teste num retalho do mesmo tecido, com entretela, antes da peça final.
+- Use apenas imagens suas ou que você tenha direito de reproduzir.
+
+LINHA DE COMANDO (opcional)
+  python bordado_core.py imagem.png saida.pes 6
